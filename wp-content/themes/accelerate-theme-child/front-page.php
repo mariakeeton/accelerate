@@ -23,5 +23,20 @@ get_header(); ?>
 		<?php endwhile; // end of the loop. ?>
 	</div><!-- .container -->
 </section><!-- .home-page -->
-
+<section class="recent-posts">
+    <div class="site-content">
+        <div class="blog-post">
+            <h4>From the Blog</h4>
+			<?php  $single_post = new WP_Query( array( 'posts_per_page' => 1 ) ); ?>
+                <?php while($single_post->have_posts()) : $single_post->the_post(); ?>
+                    <h2><?php the_title(); ?></h2>
+                    <?php the_excerpt() ?>
+                    <a class="read-more-link" href="<?php the_permalink(); ?>">
+                        Read More <span>&rsaquo;</span>
+                    </a>
+                <?php endwhile; ?>
+            <?php wp_reset_query(); ?>
+        </div>
+    </div>
+</section>
 <?php get_footer(); ?>
